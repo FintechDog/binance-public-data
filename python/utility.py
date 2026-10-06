@@ -7,6 +7,7 @@ import urllib.request
 from argparse import ArgumentParser, RawTextHelpFormatter, ArgumentTypeError
 from datetime import *
 from pathlib import Path
+from time import sleep  # 不能用 time.sleep：from enums import * 会带进 datetime.time 覆盖 time 模块名
 
 from enums import *
 
@@ -31,8 +32,12 @@ def get_all_symbols(type):
     response = urllib.request.urlopen("https://api.binance.com/api/v3/exchangeInfo").read()
   return list(map(lambda symbol: symbol['symbol'], json.loads(response)['symbols']))
 
-def download_file(base_path, file_name, date_range=None, folder=None):
+# 单个文件下载遇到网络抖动（SSL EOF、超时）时的重试次数
+最大重试次数 = 3
+
+def download_file(base_path, file_name, date_range=None, folder=None, 第几次=0):
   download_path = "{}{}".format(base_path, file_name)
+  原始base_path = base_path  # 递归重试要用未加工的路径：下面 base_path 会被 folder/date_range 改写
   if folder:
     base_path = os.path.join(folder, base_path)
   if date_range:
@@ -73,6 +78,17 @@ def download_file(base_path, file_name, date_range=None, folder=None):
   except urllib.error.HTTPError:
     print("\nFile not found: {}".format(download_url))
     pass
+  except urllib.error.URLError as 错误:
+    # 网络抖动（SSL EOF、超时）：先清掉写残的文件（否则会被「已存在即跳过」误判成下好了），再重试
+    if os.path.exists(save_path):
+      os.remove(save_path)
+    if 第几次 < 最大重试次数 - 1:
+      print("\nRetry {}/{}: {}".format(第几次 + 1, 最大重试次数, 错误))
+      sleep(1)
+      download_file(原始base_path, file_name, date_range, folder, 第几次 + 1)
+    else:
+      # 重试耗尽：抛出异常（保留原始异常与调用栈），由调用方中断
+      raise
 
 def convert_to_date_object(d):
   year, month, day = [int(x) for x in d.split('-')]
