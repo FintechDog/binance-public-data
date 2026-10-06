@@ -8,11 +8,12 @@
 
 """
 
+import pandas as pd
 import sys
 from datetime import *
-import pandas as pd
+
 from enums import *
-from utility import download_file, get_all_symbols, get_parser, get_start_end_date_objects, convert_to_date_object, \
+from utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
   get_path
 
 

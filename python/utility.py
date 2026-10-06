@@ -1,10 +1,15 @@
-import os, sys, re, shutil
 import json
-from pathlib import Path
-from datetime import *
+import os
+import re
+import shutil
+import sys
 import urllib.request
 from argparse import ArgumentParser, RawTextHelpFormatter, ArgumentTypeError
+from datetime import *
+from pathlib import Path
+
 from enums import *
+
 
 def get_destination_dir(file_url, folder=None):
   store_directory = os.environ.get('STORE_DIRECTORY')
