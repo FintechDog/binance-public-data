@@ -8,10 +8,9 @@
 
 """
 
-import pandas as pd
 import sys
-from argparse import ArgumentParser, RawTextHelpFormatter, ArgumentTypeError
-from datetime import *
+
+import pandas as pd
 
 from enums import *
 from utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \

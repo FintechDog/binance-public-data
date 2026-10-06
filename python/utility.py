@@ -6,7 +6,6 @@ import sys
 import urllib.parse
 import urllib.request
 from argparse import ArgumentParser, RawTextHelpFormatter, ArgumentTypeError
-from datetime import *
 from pathlib import Path
 from time import sleep  # 不能用 time.sleep：from enums import * 会带进 datetime.time 覆盖 time 模块名
 
