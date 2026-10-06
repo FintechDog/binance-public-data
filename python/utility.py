@@ -3,6 +3,7 @@ import os
 import re
 import shutil
 import sys
+import urllib.parse
 import urllib.request
 from argparse import ArgumentParser, RawTextHelpFormatter, ArgumentTypeError
 from datetime import *
@@ -21,7 +22,8 @@ def get_destination_dir(file_url, folder=None):
   return os.path.join(store_directory, file_url)
 
 def get_download_url(file_url):
-  return "{}{}".format(BASE_URL, file_url)
+  # 交易对可能含非 ASCII 字符（如 币安人生USDT），必须百分号编码，否则 urlopen 抛 UnicodeEncodeError
+  return "{}{}".format(BASE_URL, urllib.parse.quote(file_url))
 
 def get_all_symbols(type):
   if type == 'um':
