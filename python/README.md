@@ -1,6 +1,8 @@
 ## Installing the dependencies
 
-`pip install -r requirements.txt`
+`uv sync`
+
+This creates a virtual environment in `.venv` and installs the dependencies. The scripts can also be run with `uv run`, e.g. `uv run download-kline.py -t spot`.
 
 ## Running the scripts
 

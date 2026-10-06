@@ -1,6 +1,8 @@
 ## 安装依赖
 
-`pip install -r requirements.txt`
+`uv sync`
+
+该命令会在 `.venv` 中创建虚拟环境并安装依赖。脚本也可用 `uv run` 运行，例如 `uv run download-kline.py -t spot`。
 
 ## 运行脚本
 
