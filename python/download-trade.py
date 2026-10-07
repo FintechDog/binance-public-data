@@ -12,8 +12,8 @@ import sys
 
 import pandas as pd
 
-from enums import *
-from utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
+from bpd.enums import *
+from bpd.utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
   get_path
 
 

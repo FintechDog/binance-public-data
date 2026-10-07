@@ -12,8 +12,8 @@ from datetime import *
 
 import pandas as pd
 
-from enums import START_DATE, END_DATE, DAILY_INTERVALS, PERIOD_START_DATE
-from utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
+from bpd.enums import START_DATE, END_DATE, DAILY_INTERVALS, PERIOD_START_DATE
+from bpd.utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
     get_path, raise_arg_error
 
 

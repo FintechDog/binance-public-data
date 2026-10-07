@@ -9,7 +9,7 @@ from argparse import ArgumentParser, RawTextHelpFormatter, ArgumentTypeError
 from pathlib import Path
 from time import sleep  # 不能用 time.sleep：from enums import * 会带进 datetime.time 覆盖 time 模块名
 
-from enums import *
+from .enums import *
 
 
 def get_destination_dir(file_url, folder=None):
