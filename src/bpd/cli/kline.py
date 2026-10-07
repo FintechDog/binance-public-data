@@ -11,8 +11,8 @@ import sys
 
 import pandas as pd
 
-from bpd.enums import *
-from bpd.utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
+from ..enums import *
+from ..utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
   get_path
 
 
@@ -91,7 +91,7 @@ def download_daily_klines(trading_type, symbols, num_symbols, intervals, dates, 
 
     current += 1
 
-if __name__ == "__main__":
+def main() -> None:
     parser = get_parser('klines')
     args = parser.parse_args(sys.argv[1:])
 
@@ -114,4 +114,8 @@ if __name__ == "__main__":
         download_monthly_klines(args.type, symbols, num_symbols, args.intervals, args.years, args.months, args.startDate, args.endDate, args.folder, args.checksum)
     if args.skip_daily == 0:
       download_daily_klines(args.type, symbols, num_symbols, args.intervals, dates, args.startDate, args.endDate, args.folder, args.checksum)
+
+
+if __name__ == "__main__":
+    main()
 

@@ -12,8 +12,8 @@ from datetime import *
 
 import pandas as pd
 
-from bpd.enums import START_DATE, END_DATE, DAILY_INTERVALS, PERIOD_START_DATE
-from bpd.utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
+from ..enums import START_DATE, END_DATE, DAILY_INTERVALS, PERIOD_START_DATE
+from ..utility import download_file, get_all_symbols, get_parser, convert_to_date_object, \
     get_path, raise_arg_error
 
 
@@ -97,7 +97,7 @@ def download_daily_indexPriceKlines(trading_type, symbols, num_symbols, interval
         current += 1
 
 
-if __name__ == "__main__":
+def main() -> None:
     parser = get_parser('klines')
     args = parser.parse_args(sys.argv[1:])
 
@@ -123,3 +123,7 @@ if __name__ == "__main__":
                                           args.startDate, args.endDate, args.folder, args.checksum)
     download_daily_indexPriceKlines(args.type, symbols, num_symbols, args.intervals, dates, args.startDate,
                                     args.endDate, args.folder, args.checksum)
+
+
+if __name__ == "__main__":
+    main()
