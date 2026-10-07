@@ -7,6 +7,14 @@ dependencies = [
     "pandas",
 ]
 
+[project.scripts]
+bpd-kline = "bpd.cli.kline:main"
+bpd-trade = "bpd.cli.trade:main"
+bpd-agg-trade = "bpd.cli.agg_trade:main"
+bpd-futures-index-price-klines = "bpd.cli.futures_index_price_klines:main"
+bpd-futures-mark-price-klines = "bpd.cli.futures_mark_price_klines:main"
+bpd-futures-premium-index-klines = "bpd.cli.futures_premium_index_klines:main"
+
 [build-system]
 requires = ["uv_build>=0.10.12,<0.11"]
 build-backend = "uv_build"
